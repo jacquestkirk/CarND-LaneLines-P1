@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 [grayscale_image]: ./test_images_output/solidWhiteCurve.jpg_grayscale.jpg "Grayscale"
 [blurred_image]: ./test_images_output/solidWhiteCurve.jpg_blurred.jpg "Blurred"
 [canny_image]: ./test_images_output/solidWhiteCurve.jpg_cannyEdges.jpg "Canny"
-[masked_image]: ./test_images_output/solidWhiteCurve.jpg_grayscale.jpg "Masked"
+[masked_image]: ./test_images_output/solidWhiteCurve.jpg_maskedEdges.jpg "Masked"
 [line_image]: ./test_images_output/solidWhiteCurve.jpg_final.jpg "Line"
 
 ---
@@ -25,19 +25,36 @@ The goals / steps of this project are the following:
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
 **My pipeline consisted of 5 steps:**
-- Convert to grayscale: Converting to grayscale merges the color data to make subsequent processing steps easier
+1. Convert to grayscale: Converting to grayscale merges the color data to make subsequent processing steps easier
+
 ![grayscale_image]
-- Gaussian blur: I applied a gaussian blur with a kernel size of 9. This removes noise that can be picked up as edges by subsequent steps. 
+
+2. Gaussian blur: I applied a gaussian blur with a kernel size of 9. This removes noise that can be picked up as edges by subsequent steps. 
+
 ![blurred_image]
-- Canny edge detection: Used Canny edge detection to find edges in the entire blured picture.
+
+3. Canny edge detection: Used Canny edge detection to find edges in the entire blured picture.
+
 ![canny_image] 
-- Masked region: Mask the region of interest using a quadrilateral shape. Only keep the edges that are within the mask
+
+4. Masked region: Mask the region of interest using a quadrilateral shape. Only keep the edges that are within the mask
+
 ![masked_image]
-- Hough transform: Perform the hough transform on the masked edges. This results in a collection of lines representing edges in the mask
-- Fliter: Out of all the lines, find the best left line and the best right line and draw them. This process is discussed in more detail in the next section
+
+5. Hough transform: Perform the hough transform on the masked edges. This results in a collection of lines representing edges in the mask
+
+6. Fliter: Out of all the lines, find the best left line and the best right line and draw them. This process is discussed in more detail in the next section
+
 ![line_image]
 
 The pipeline is implemented in the pipeline() and process_image() functions. Parameters for the pipeline can be found in the pipelineParameters class. 
+
+Final images can be found at... https://github.com/jacquestkirk/CarND-LaneLines-P1/tree/master/test_images_output/Final%20Images
+
+Final videos can be found at... https://github.com/jacquestkirk/CarND-LaneLines-P1/tree/master/test_videos_output
+
+I took a shot at the challenge video, but it doesn't work very well. See questions 2 and 3 for possible fixes.
+
 
 **In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...**
 I created a LaneLines class to hold a left lane line (leftLine) and a right lane line (rightLine). Each lane line consists of an internal state variable representing, slope and intercept of the lane line. When the draw_lines() function is called, instead of drawing lines (so it's a bit of a misnomer now) it pushes the data onto a list of lines. The LaneLines class does the following with this list:
