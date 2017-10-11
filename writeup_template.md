@@ -1,8 +1,5 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -15,7 +12,11 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
+[grayscale_image]: ./test_images_output/solidWhiteCurve.jpg_grayscale.jpg "Grayscale"
+[blurred_image]: ./test_images_output/solidWhiteCurve.jpg_blurred.jpg "Blurred"
+[canny_image]: ./test_images_output/solidWhiteCurve.jpg_cannyEdges.jpg "Canny"
+[masked_image]: ./test_images_output/solidWhiteCurve.jpg_grayscale.jpg "Masked"
+[line_image]: ./test_images_output/solidWhiteCurve.jpg_final.jpg "Line"
 
 ---
 
@@ -25,11 +26,16 @@ The goals / steps of this project are the following:
 
 **My pipeline consisted of 5 steps:**
 - Convert to grayscale: Converting to grayscale merges the color data to make subsequent processing steps easier
+![grayscale_image]
 - Gaussian blur: I applied a gaussian blur with a kernel size of 9. This removes noise that can be picked up as edges by subsequent steps. 
-- Canny edge detection: Used Canny edge detection to find edges in the entire blured picture. 
+![blurred_image]
+- Canny edge detection: Used Canny edge detection to find edges in the entire blured picture.
+![canny_image] 
 - Masked region: Mask the region of interest using a quadrilateral shape. Only keep the edges that are within the mask
+![masked_image]
 - Hough transform: Perform the hough transform on the masked edges. This results in a collection of lines representing edges in the mask
 - Fliter: Out of all the lines, find the best left line and the best right line and draw them. This process is discussed in more detail in the next section
+![line_image]
 
 The pipeline is implemented in the pipeline() and process_image() functions. Parameters for the pipeline can be found in the pipelineParameters class. 
 
@@ -42,9 +48,8 @@ I created a LaneLines class to hold a left lane line (leftLine) and a right lane
 - plot leftLine
 - repeat for rightLine
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
-![alt text][image1]
+
 
 
 ### 2. Identify potential shortcomings with your current pipeline
