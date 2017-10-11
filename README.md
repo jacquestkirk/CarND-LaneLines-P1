@@ -1,3 +1,13 @@
+#**Hi Grader**
+
+Find my writeup on this project here...
+
+https://github.com/jacquestkirk/CarND-LaneLines-P1/blob/master/writeup.md
+
+
+
+
+
 # **Finding Lane Lines on the Road** 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
